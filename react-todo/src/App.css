@@ -2,6 +2,9 @@
   padding: 0;
   margin: 0;
 }
+*:focus {
+  outline: none;
+}
 
 body {
   background-color: #ececec;
@@ -10,7 +13,7 @@ body {
 /* TodoRoot */
 .TodoRoot {
   background-color: #ffffff;
-  width: 50%;
+  width: 60%;
   margin: 0 auto;
   padding: 1px;
   /* 부모 요소에 padding값 넣어줘서 margin상쇄 없앰  */
@@ -29,15 +32,26 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-family: Nanum Pen Script;
   font-size: 18px;
+  font-weight: 600;
   padding: 10px 20px;
   white-space: nowrap;
 }
 
+.Button_default {
+  background-color: #ececec;
+}
+
+.Button_create {
+  background-color: #07b5d6;
+}
+
+.Button_delete {
+  background-color: #fe5a5a;
+}
+
 .view {
   width: 100%;
-  height: 100%;
   height: 100vh;
 }
 
@@ -76,4 +90,34 @@ body {
 .img_wrapper img {
   width: 200px;
   height: 200px;
+}
+
+/* Todo_writable */
+.Todo_writable {
+  display: flex;
+  flex-direction: column;
+}
+
+.add_TodoItem_area {
+  display: flex;
+  justify-content: center;
+}
+
+.add_TodoItem_input {
+  border-radius: 15px;
+  border: 1px solid #ececec;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  margin-right: 18px;
+}
+
+.add_TodoItem_input input {
+  border: none;
+  font-size: 18px;
+}
+
+.Todoes_display_area {
+  display: flex;
+  justify-content: space-around;
 }

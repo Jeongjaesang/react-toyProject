@@ -21,7 +21,6 @@ const Empty = ({ curDate }) => {
     const newTodo = createTodo(curDate, todoId.current);
     todoId.current += 1;
     onCreate(newTodo);
-    console.log("handleOnClick");
   };
 
   return (

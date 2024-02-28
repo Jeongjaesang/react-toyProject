@@ -37,11 +37,15 @@ const TodoRoot = () => {
   return (
     <div className="TodoRoot">
       <header className="Header">
-        <Button text="<" onClick={decreaseDate} />
+        <Button type="default" text="<" onClick={decreaseDate} />
         {headText}
-        <Button text=">" onClick={increaseDate} />
+        <Button type="default" text=">" onClick={increaseDate} />
       </header>
-      {curTodo ? <Todo_writable /> : <Empty curDate={curDate.toDateString()} />}
+      {curTodo ? (
+        <Todo_writable curTodo={curTodo} />
+      ) : (
+        <Empty curDate={curDate.toDateString()} />
+      )}
     </div>
   );
 };
