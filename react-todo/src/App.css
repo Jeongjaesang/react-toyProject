@@ -1,0 +1,79 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: #ececec;
+}
+
+/* TodoRoot */
+.TodoRoot {
+  background-color: #ffffff;
+  width: 50%;
+  margin: 0 auto;
+  padding: 1px;
+  /* 부모 요소에 padding값 넣어줘서 margin상쇄 없앰  */
+}
+
+.Header {
+  width: 100%;
+  margin: 25px 0px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.Button {
+  background-color: #ececec;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: Nanum Pen Script;
+  font-size: 18px;
+  padding: 10px 20px;
+  white-space: nowrap;
+}
+
+.view {
+  width: 100%;
+  height: 100%;
+  height: 100vh;
+}
+
+/* Empty */
+.Empty {
+  position: relative;
+}
+
+.Empty_wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%, -80%);
+}
+
+.Empty_wrapper h2,
+.Empty_wrapper h3 {
+  text-align: center;
+  margin: 20px;
+}
+
+.Empty_wrapper h3 {
+  color: #bbbbbb;
+  cursor: pointer;
+}
+
+.Empty_wrapper h3:hover {
+  text-decoration: underline;
+}
+
+.img_wrapper {
+  text-align: center;
+}
+
+.img_wrapper img {
+  width: 200px;
+  height: 200px;
+}
