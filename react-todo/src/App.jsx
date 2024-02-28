@@ -5,8 +5,18 @@ import "./App.css";
 const reducer = (state, action) => {
   let newState = [];
   switch (action.type) {
-    case "CREATE":
+    case "CREATE": {
+      // 완전한 복사는 아닌데 이래도 되나 싶다. 완전한 복사는 JSON을 사용할 수 있다는데 비용이 많이 드는 연산이라고..
+      const newData = {
+        id: action.data.id,
+        createdAt: action.data.createdAt,
+        not_started: [...action.data.not_started],
+        in_progress: [...action.data.in_progress],
+        done: [...action.data.done],
+      };
+      newState = [...state, newData];
       break;
+    }
 
     default:
       return state;
@@ -15,6 +25,7 @@ const reducer = (state, action) => {
 };
 
 export const TodoStateContext = React.createContext();
+export const TodoDDispatchContext = React.createContext();
 
 const dummyData = [
   {
@@ -33,9 +44,15 @@ function App() {
   // const [state, dispatch] = useReducer(reducer, dummyData);
   const [state, dispatch] = useReducer(reducer, []);
 
+  const onCreate = (data) => {
+    dispatch({ type: "CREATE", data: data });
+  };
+
   return (
     <TodoStateContext.Provider value={state}>
-      <TodoRoot />
+      <TodoDDispatchContext.Provider value={{ onCreate }}>
+        <TodoRoot />
+      </TodoDDispatchContext.Provider>
     </TodoStateContext.Provider>
   );
 }

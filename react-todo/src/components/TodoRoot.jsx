@@ -32,7 +32,7 @@ const TodoRoot = () => {
       (todo) => todo.createdAt === curDate.toDateString()
     );
     setCurTodo(targetTodo);
-  }, []);
+  }, [curDate, state]);
 
   return (
     <div className="TodoRoot">
@@ -41,7 +41,7 @@ const TodoRoot = () => {
         {headText}
         <Button text=">" onClick={increaseDate} />
       </header>
-      {curTodo ? <Todo_writable /> : <Empty />}
+      {curTodo ? <Todo_writable /> : <Empty curDate={curDate.toDateString()} />}
     </div>
   );
 };
