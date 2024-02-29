@@ -205,11 +205,17 @@ body {
 .Menu {
   position: absolute;
   width: 150px;
-  background-color: red;
-  top: 10px;
-  left: 5px;
-  z-index: 2;
+  top: 20px;
+  left: 140px;
+  z-index: 100;
+  background-color: white;
   padding: 8px;
   border-radius: 5px;
   box-shadow: 1px 1px 5px gray;
+  font-size: 1rem;
+}
+
+.Menu li:hover {
+  background-color: #ececec;
+  cursor: pointer;
 }

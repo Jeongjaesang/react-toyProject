@@ -31,8 +31,8 @@ const TodoItem = ({ title }) => {
       <span>{title}</span>
       <div className="menu_mark" onClick={handleIsMenu}>
         <span>...</span>
-        {isMenu && <Menu ref={menuRef} />}
       </div>
+      {isMenu && <Menu ref={menuRef} />}
     </li>
   );
 };
