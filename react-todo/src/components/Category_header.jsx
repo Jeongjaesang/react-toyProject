@@ -4,7 +4,9 @@ const Category_header = ({ type, length }) => {
   return (
     <div className={["Category_header", `Category_header_${type}`].join(" ")}>
       <span>{type}</span>
-      <span>{length}</span>
+      <div>
+        <span>{length}</span>
+      </div>
     </div>
   );
 };

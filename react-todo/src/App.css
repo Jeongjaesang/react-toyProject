@@ -1,6 +1,7 @@
 * {
   padding: 0;
   margin: 0;
+  list-style-type: none;
 }
 *:focus {
   outline: none;
@@ -96,6 +97,7 @@ body {
 .Todo_writable {
   display: flex;
   flex-direction: column;
+  justify-content: start;
 }
 
 .add_TodoItem_area {
@@ -119,5 +121,95 @@ body {
 
 .Todoes_display_area {
   display: flex;
-  justify-content: space-around;
+}
+
+.Category {
+  width: 33%;
+}
+
+.Category_header {
+  width: 70%;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  /* 추후 조정 */
+  background-color: #b870ff;
+  padding: 10px;
+  border-radius: 15px;
+  display: flex;
+}
+
+.Category_header_ToDo {
+  background-color: #9e9e9e;
+}
+
+.Category_header_IN_PROGRESS {
+  background-color: #b870ff;
+}
+
+.Category_header_CLOSED {
+  background-color: #60f378;
+}
+
+.Category_header span {
+  margin: 0 5px;
+  font-weight: 600;
+}
+
+.Category_header div {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.TodoItem {
+  width: 70%;
+  margin: 10px auto;
+  padding: 10px;
+  /* box-shadow: 5px 5px 5px gray; */
+  border-bottom: 2.5px solid #ececec;
+  border-left: 1px solid #ececec;
+  border-right: 1px solid #ececec;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.menu_mark {
+  background-color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+}
+
+.menu_mark:hover {
+  background-color: #ececec;
+  transition: all 0.7 ease;
+}
+
+.menu_mark span {
+  height: 2px;
+  color: #9e9e9e;
+  position: absolute;
+  top: -22%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.Menu {
+  position: absolute;
+  width: 150px;
+  background-color: red;
+  top: 10px;
+  left: 5px;
+  z-index: 2;
+  padding: 8px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px gray;
 }

@@ -41,8 +41,8 @@ const dummyData = [
 ];
 
 function App() {
-  // const [state, dispatch] = useReducer(reducer, dummyData);
-  const [state, dispatch] = useReducer(reducer, []);
+  const [state, dispatch] = useReducer(reducer, dummyData);
+  // const [state, dispatch] = useReducer(reducer, []);
 
   const onCreate = (data) => {
     dispatch({ type: "CREATE", data: data });
