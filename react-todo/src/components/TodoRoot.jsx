@@ -3,11 +3,23 @@ import Button from "./Button";
 import { TodoStateContext } from "../App";
 import Todo_writable from "./Todo_writable";
 import Empty from "./Empty";
+
 const TodoRoot = () => {
   const [curDate, setCurDate] = useState(new Date());
-  const [curTodo, setCurTodo] = useState(null);
+  const [curTodo_daily, setcurTodo_daily] = useState(null);
 
   const state = useContext(TodoStateContext);
+
+  // dummycurTodo_daily =   {
+  //   id: 1,
+  //   createdAt: "Wed Feb 28 2024",
+  //   not_started: [
+  //     { id: 1, title: "Learn Redux" },
+  //     { id: 3, title: "Learn Next js" },
+  //   ],
+  //   in_progress: [{ id: 2, title: "Learn React" }],
+  //   done: [],
+  // },
 
   const headText = `${curDate.getFullYear()}년  ${
     curDate.getMonth() + 1
@@ -31,7 +43,7 @@ const TodoRoot = () => {
     const targetTodo = state.find(
       (todo) => todo.createdAt === curDate.toDateString()
     );
-    setCurTodo(targetTodo);
+    setcurTodo_daily(targetTodo);
   }, [curDate, state]);
 
   return (
@@ -41,8 +53,8 @@ const TodoRoot = () => {
         {headText}
         <Button type="default" text=">" onClick={increaseDate} />
       </header>
-      {curTodo ? (
-        <Todo_writable curTodo={curTodo} />
+      {curTodo_daily ? (
+        <Todo_writable curTodo_daily={curTodo_daily} />
       ) : (
         <Empty curDate={curDate.toDateString()} />
       )}

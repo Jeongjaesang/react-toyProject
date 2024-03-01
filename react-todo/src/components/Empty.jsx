@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import { useContext, useRef } from "react";
-import { TodoDDispatchContext } from "../App";
+import { TodoDispatchContext } from "../App";
 
-const createTodo = (curDate, todoId) => {
+const createTodoDaily = (curDate, todoId) => {
   return {
     id: todoId,
     createdAt: curDate,
@@ -15,12 +15,12 @@ const createTodo = (curDate, todoId) => {
 const Empty = ({ curDate }) => {
   const todoId = useRef(5);
 
-  const { onCreate } = useContext(TodoDDispatchContext);
+  const { onCreateTodoDaily } = useContext(TodoDispatchContext);
 
   const handleOnClick = () => {
-    const newTodo = createTodo(curDate, todoId.current);
+    const newTodo = createTodoDaily(curDate, todoId.current);
     todoId.current += 1;
-    onCreate(newTodo);
+    onCreateTodoDaily(newTodo);
   };
 
   return (
