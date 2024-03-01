@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import Menu from "./Menu";
 import { useEffect, useRef, useState } from "react";
 
-const TodoItem = ({ title }) => {
+const TodoItem = ({ type, id, title }) => {
   const menuRef = useRef(null);
   const [isMenu, setIsMenu] = useState(false);
 
@@ -32,7 +32,7 @@ const TodoItem = ({ title }) => {
       <div className="menu_mark" onClick={handleIsMenu}>
         <span>...</span>
       </div>
-      {isMenu && <Menu ref={menuRef} />}
+      {isMenu && <Menu type={type} id={id} ref={menuRef} />}
     </li>
   );
 };

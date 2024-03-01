@@ -1,9 +1,12 @@
 import Button from "./Button";
 import PropTypes from "prop-types";
 import Category from "./Category";
-import { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { TodoDispatchContext } from "../App";
 import { copyTodo_daily } from "../services/services";
+
+export const Todo_DailyContext = React.createContext();
+export const Todo_DailyDispatchContext = React.createContext();
 
 const Todo_writable = ({ curTodo_daily }) => {
   // console.log(curTodo_daily);
@@ -45,6 +48,15 @@ const Todo_writable = ({ curTodo_daily }) => {
     setInputValue("");
   };
 
+  // context api를 사용해야 할 듯!
+  const handleDeleteTodoItem = (category, todoItemId) => {
+    const newTodo_daily = copyTodo_daily(curTodo_daily);
+    newTodo_daily[category] = newTodo_daily[category].filter(
+      (todo_item) => todo_item.id !== Number(todoItemId)
+    );
+    onUpdateTodoDaily(newTodo_daily);
+  };
+
   useEffect(() => {
     const handleKeydown = (e) => {
       if (e.key == "Enter") {
@@ -75,14 +87,20 @@ const Todo_writable = ({ curTodo_daily }) => {
         </div>
         <Button type="create" text="create" onClick={handleCreateTodoItem} />
       </section>
-      <section className="Todoes_display_area">
-        <Category type="ToDo" items={curTodo_daily.not_started} />
-        <Category type="IN PROGRESS" items={curTodo_daily.in_progress} />
-        <Category type="CLOSED" items={curTodo_daily.done} />
-      </section>
-      <section className="footer">
-        <Button type="delete" text="삭제하기" onClick={handleDeleteTodoDaily} />
-      </section>
+      <Todo_DailyDispatchContext.Provider value={{ handleDeleteTodoItem }}>
+        <section className="Todoes_display_area">
+          <Category type="not_started" items={curTodo_daily.not_started} />
+          <Category type="in_progress" items={curTodo_daily.in_progress} />
+          <Category type="done" items={curTodo_daily.done} />
+        </section>
+        <section className="footer">
+          <Button
+            type="delete"
+            text="삭제하기"
+            onClick={handleDeleteTodoDaily}
+          />
+        </section>
+      </Todo_DailyDispatchContext.Provider>
     </div>
   );
 };

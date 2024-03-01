@@ -1,15 +1,24 @@
-import { forwardRef } from "react";
+import { forwardRef, useContext } from "react";
+import { Todo_DailyDispatchContext } from "./Todo_writable";
 
 const menuList = [
   { id: 1, title: "오늘 하기" },
   { id: 2, title: "삭제하기" },
 ];
 
-const Menu = forwardRef(function MyInput(props, ref) {
+const Menu = forwardRef(function MyInput({ type, id }, ref) {
+  const { handleDeleteTodoItem } = useContext(Todo_DailyDispatchContext);
+
+  const onClickDelete = () => {
+    handleDeleteTodoItem(type, id);
+  };
+
   return (
     <ul className="Menu" ref={ref}>
       {menuList.map((menu) => (
-        <li key={menu.id}>{menu.title}</li>
+        <li key={menu.id} onClick={onClickDelete}>
+          {menu.title}
+        </li>
       ))}
     </ul>
   );

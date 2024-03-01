@@ -8,7 +8,14 @@ const Category = ({ type, items }) => {
       <Category_header type={type} length={items.length} />
       <div className="Todo_Items">
         {items.map((item) => {
-          return <TodoItem key={item.id} title={item.title} />;
+          return (
+            <TodoItem
+              key={item.id}
+              type={type}
+              id={item.id}
+              title={item.title}
+            />
+          );
         })}
       </div>
     </div>
