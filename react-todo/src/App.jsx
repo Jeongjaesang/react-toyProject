@@ -19,6 +19,16 @@ const reducer = (state, action) => {
       break;
     }
 
+    case "UPDATE_TODO_DAILY": {
+      newState = state.map((todo_daily) => {
+        if (todo_daily.id === action.data.id) {
+          const newTodo_daily = copyTodo_daily(action.data);
+          return newTodo_daily;
+        }
+      });
+      break;
+    }
+
     default:
       return state;
   }
@@ -53,10 +63,14 @@ function App() {
     dispatch({ type: "DELETE_TODO_DAILY", id: todoDailyId });
   };
 
+  const onUpdateTodoDaily = (data) => {
+    dispatch({ type: "UPDATE_TODO_DAILY", data: data });
+  };
+
   return (
     <TodoStateContext.Provider value={state}>
       <TodoDispatchContext.Provider
-        value={{ onCreateTodoDaily, onDeleteTodoDaily }}
+        value={{ onCreateTodoDaily, onDeleteTodoDaily, onUpdateTodoDaily }}
       >
         <TodoRoot />
       </TodoDispatchContext.Provider>
