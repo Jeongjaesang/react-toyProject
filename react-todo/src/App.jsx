@@ -44,7 +44,7 @@ const reducer = (state, action) => {
       break;
     }
 
-    case "moveToDoItemToTodayTodoDaily": {
+    case "MOVE_TODOITEM_TO_TODAY_TODO_DAILY": {
       newState = copyState(state);
       const targetTodoDaily = newState.find(
         (todo_daily) => todo_daily.id === action.data.todoDaily.id
@@ -55,7 +55,8 @@ const reducer = (state, action) => {
       const targetTodoItem = targetTodoDaily[action.data.category].splice(
         targetTodoItemIndex,
         1
-      ); // 삭제 => 삭제하려는 item을 포함한 Todo_daily, category, todoItemId를 전달 받아 해당 아이템을 삭제한다.
+      )[0]; // 삭제 => 삭제하려는 item을 포함한 Todo_daily, category, todoItemId를 전달 받아 해당 아이템을 삭제한다.
+      // splice 메서드의 반환값은 배열임을 주의!!
 
       let todayTodoDaily = getToDayTodoDaily(newState);
 
@@ -66,7 +67,6 @@ const reducer = (state, action) => {
       }
       todayTodoDaily[action.data.category].push(targetTodoItem);
       newState.push(todayTodoDaily);
-
       break;
     }
 
@@ -107,10 +107,26 @@ function App() {
     dispatch({ type: "UPDATE_TODO_DAILY", data: data });
   };
 
+  const onMoveToDoItemToTodayTodoDaily = (todoDaily, category, todoItemId) => {
+    dispatch({
+      type: "MOVE_TODOITEM_TO_TODAY_TODO_DAILY",
+      data: {
+        todoDaily: todoDaily,
+        category: category,
+        todoItemId: todoItemId,
+      },
+    });
+  };
+
   return (
     <TodoStateContext.Provider value={state}>
       <TodoDispatchContext.Provider
-        value={{ onCreateTodoDaily, onDeleteTodoDaily, onUpdateTodoDaily }}
+        value={{
+          onCreateTodoDaily,
+          onDeleteTodoDaily,
+          onUpdateTodoDaily,
+          onMoveToDoItemToTodayTodoDaily,
+        }}
       >
         <TodoRoot />
       </TodoDispatchContext.Provider>

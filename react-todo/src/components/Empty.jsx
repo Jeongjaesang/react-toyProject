@@ -4,13 +4,10 @@ import { TodoDispatchContext } from "../App";
 import { createTodoDaily } from "../services/services";
 
 const Empty = ({ curDate }) => {
-  // const todoId = useRef(5);
-
   const { onCreateTodoDaily } = useContext(TodoDispatchContext);
 
   const handleOnClick = () => {
     const newTodo = createTodoDaily(curDate);
-    // todoId.current += 1;
     onCreateTodoDaily(newTodo);
   };
 

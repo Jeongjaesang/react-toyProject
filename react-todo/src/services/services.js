@@ -27,6 +27,7 @@ export const copyState = (state) => {
 };
 
 export const createTodoDaily = (curDate) => {
+  // 날짜(curDate)에 해당하는 todo_daily를 생성하여 반환한다.
   return {
     id: curDate,
     not_started: [],

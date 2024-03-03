@@ -11,13 +11,38 @@ const menuList = [
 ];
 
 const Menu = forwardRef(function MyInput({ type, id }, ref) {
-  const { handleDeleteTodoItem } = useContext(Todo_DailyDispatchContext);
+  const { handleDeleteTodoItem, handleMovoTodoItemToToday } = useContext(
+    Todo_DailyDispatchContext
+  );
 
   const onClickDelete = () => {
     handleDeleteTodoItem(type, id);
   };
 
-  return <ul className="Menu" ref={ref}></ul>;
+  const onClickMoveTodoToToday = () => {
+    handleMovoTodoItemToToday(type, id);
+  };
+
+  return (
+    <ul className="Menu" ref={ref}>
+      {menuList.map((menu) => {
+        switch (menu.id) {
+          case 1:
+            return (
+              <li key={menu.id} onClick={onClickMoveTodoToToday}>
+                {menu.title}
+              </li>
+            );
+          case 2:
+            return (
+              <li key={menu.id} onClick={onClickDelete}>
+                {menu.title}
+              </li>
+            );
+        }
+      })}
+    </ul>
+  );
 });
 
 Menu.propTypes = {

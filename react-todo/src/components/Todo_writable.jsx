@@ -22,8 +22,11 @@ const Todo_writable = ({ curTodo_daily }) => {
 
   const inputRef = useRef(null);
 
-  const { onDeleteTodoDaily, onUpdateTodoDaily } =
-    useContext(TodoDispatchContext);
+  const {
+    onDeleteTodoDaily,
+    onUpdateTodoDaily,
+    onMoveToDoItemToTodayTodoDaily,
+  } = useContext(TodoDispatchContext);
 
   const handleDeleteTodoDaily = () => {
     if (window.confirm("오늘의 Todo 목록을 삭제하시겠습니까?")) {
@@ -57,7 +60,9 @@ const Todo_writable = ({ curTodo_daily }) => {
     onUpdateTodoDaily(newTodo_daily);
   };
 
-  const handleMoveTodoItem = (fromCategory, toCategory, todoItemId) => {};
+  const handleMovoTodoItemToToday = (category, todoItemId) => {
+    onMoveToDoItemToTodayTodoDaily(curTodo_daily, category, todoItemId);
+  };
 
   useEffect(() => {
     const handleKeydown = (e) => {
@@ -89,7 +94,9 @@ const Todo_writable = ({ curTodo_daily }) => {
         </div>
         <Button type="create" text="create" onClick={handleCreateTodoItem} />
       </section>
-      <Todo_DailyDispatchContext.Provider value={{ handleDeleteTodoItem }}>
+      <Todo_DailyDispatchContext.Provider
+        value={{ handleDeleteTodoItem, handleMovoTodoItemToToday }}
+      >
         <section className="Todoes_display_area">
           <Category type="not_started" items={curTodo_daily.not_started} />
           <Category type="in_progress" items={curTodo_daily.in_progress} />
