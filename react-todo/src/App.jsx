@@ -1,7 +1,23 @@
 import React, { useReducer, useState } from "react";
 import TodoRoot from "./components/TodoRoot";
-import { copyTodo_daily, copyState } from "./services/services.js";
+import {
+  copyTodo_daily,
+  copyState,
+  createTodoDaily,
+} from "./services/services.js";
 import "./App.css";
+
+const getToDayTodoDaily = (state) => {
+  const todayTodoDailyId = new Date().toDateString();
+
+  let todayTodoDaily = null;
+
+  todayTodoDaily = state.find(
+    (todo_daily) => todo_daily.id === todayTodoDailyId
+  );
+
+  return todayTodoDaily;
+};
 
 const reducer = (state, action) => {
   let newState = [];
@@ -13,9 +29,7 @@ const reducer = (state, action) => {
     }
 
     case "DELETE_TODO_DAILY": {
-      newState = state.filter(
-        (todo_daily) => Number(todo_daily.id) !== Number(action.id)
-      );
+      newState = state.filter((todo_daily) => todo_daily.id !== action.id);
       break;
     }
 
@@ -27,6 +41,32 @@ const reducer = (state, action) => {
           return newTodo_daily;
         }
       });
+      break;
+    }
+
+    case "moveToDoItemToTodayTodoDaily": {
+      newState = copyState(state);
+      const targetTodoDaily = newState.find(
+        (todo_daily) => todo_daily.id === action.data.todoDaily.id
+      ); // todo_daily를 찾음
+      const targetTodoItemIndex = targetTodoDaily[
+        action.data.category
+      ].findIndex((todoItem) => todoItem.id === Number(action.data.todoItemId));
+      const targetTodoItem = targetTodoDaily[action.data.category].splice(
+        targetTodoItemIndex,
+        1
+      ); // 삭제 => 삭제하려는 item을 포함한 Todo_daily, category, todoItemId를 전달 받아 해당 아이템을 삭제한다.
+
+      let todayTodoDaily = getToDayTodoDaily(newState);
+
+      if (!todayTodoDaily) {
+        // 오늘의 todoDaily가 없다면 만든다.
+        const todayString = new Date().toDateString();
+        todayTodoDaily = createTodoDaily(todayString);
+      }
+      todayTodoDaily[action.data.category].push(targetTodoItem);
+      newState.push(todayTodoDaily);
+
       break;
     }
 

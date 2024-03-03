@@ -25,3 +25,12 @@ export const copyState = (state) => {
   }
   return newState;
 };
+
+export const createTodoDaily = (curDate) => {
+  return {
+    id: curDate,
+    not_started: [],
+    in_progress: [],
+    done: [],
+  };
+};

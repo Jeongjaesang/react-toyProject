@@ -1,15 +1,7 @@
 import PropTypes from "prop-types";
 import { useContext } from "react";
 import { TodoDispatchContext } from "../App";
-
-const createTodoDaily = (curDate) => {
-  return {
-    id: curDate,
-    not_started: [],
-    in_progress: [],
-    done: [],
-  };
-};
+import { createTodoDaily } from "../services/services";
 
 const Empty = ({ curDate }) => {
   // const todoId = useRef(5);

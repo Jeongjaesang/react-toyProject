@@ -27,7 +27,7 @@ const Todo_writable = ({ curTodo_daily }) => {
 
   const handleDeleteTodoDaily = () => {
     if (window.confirm("오늘의 Todo 목록을 삭제하시겠습니까?")) {
-      onDeleteTodoDaily(Number(curTodo_daily.id));
+      onDeleteTodoDaily(curTodo_daily.id);
     }
   };
 
