@@ -20,6 +20,7 @@ const reducer = (state, action) => {
     }
 
     case "UPDATE_TODO_DAILY": {
+      console.log("update action occured");
       newState = state.map((todo_daily) => {
         if (todo_daily.id === action.data.id) {
           const newTodo_daily = copyTodo_daily(action.data);
@@ -40,8 +41,7 @@ export const TodoDispatchContext = React.createContext();
 
 const dummyData = [
   {
-    id: 1,
-    createdAt: "Wed Feb 28 2024",
+    id: "Wed Feb 28 2024",
     not_started: [
       { id: 1, title: "Learn Redux" },
       { id: 3, title: "Learn Next js" },
