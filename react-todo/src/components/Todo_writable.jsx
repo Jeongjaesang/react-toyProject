@@ -60,6 +60,19 @@ const Todo_writable = ({ curTodo_daily }) => {
     onUpdateTodoDaily(newTodo_daily);
   };
 
+  const handleMoveTodoItem = (fromCategory, toCategory, todoItemId) => {
+    const newTodo_daily = copyTodo_daily(curTodo_daily);
+    const targetTodoItemIndex = newTodo_daily[fromCategory].findIndex(
+      (todoItem) => todoItem.id === todoItemId
+    );
+    const targetTodoItem = newTodo_daily[fromCategory].splice(
+      targetTodoItemIndex,
+      1
+    )[0];
+    newTodo_daily[toCategory].push(targetTodoItem);
+    onUpdateTodoDaily(newTodo_daily);
+  };
+
   const handleMovoTodoItemToToday = (category, todoItemId) => {
     onMoveToDoItemToTodayTodoDaily(curTodo_daily, category, todoItemId);
   };
@@ -95,7 +108,11 @@ const Todo_writable = ({ curTodo_daily }) => {
         <Button type="create" text="create" onClick={handleCreateTodoItem} />
       </section>
       <Todo_DailyDispatchContext.Provider
-        value={{ handleDeleteTodoItem, handleMovoTodoItemToToday }}
+        value={{
+          handleDeleteTodoItem,
+          handleMoveTodoItem,
+          handleMovoTodoItemToToday,
+        }}
       >
         <section className="Todoes_display_area">
           <Category type="not_started" items={curTodo_daily.not_started} />
