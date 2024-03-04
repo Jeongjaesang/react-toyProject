@@ -28,6 +28,12 @@ body {
   justify-content: space-around;
 }
 
+.todoMessage {
+  font-size: 12px;
+  color: red;
+  text-align: center;
+}
+
 .Button {
   background-color: #ececec;
   color: #000;
