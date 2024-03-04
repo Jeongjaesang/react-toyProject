@@ -28,6 +28,11 @@ const Todo_writable = ({ curTodo_daily }) => {
     onMoveToDoItemToTodayTodoDaily,
   } = useContext(TodoDispatchContext);
 
+  const checkToday = () => {
+    const todayString = new Date().toDateString();
+    return curTodo_daily.id == todayString;
+  };
+
   const handleDeleteTodoDaily = () => {
     if (window.confirm("오늘의 Todo 목록을 삭제하시겠습니까?")) {
       onDeleteTodoDaily(curTodo_daily.id);
@@ -112,6 +117,7 @@ const Todo_writable = ({ curTodo_daily }) => {
           handleDeleteTodoItem,
           handleMoveTodoItem,
           handleMovoTodoItemToToday,
+          checkToday,
         }}
       >
         <section className="Todoes_display_area">

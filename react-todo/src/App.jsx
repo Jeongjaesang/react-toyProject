@@ -63,6 +63,7 @@ const reducer = (state, action) => {
       const targetTodoItemIndex = targetTodoDaily[
         action.data.category
       ].findIndex((todoItem) => todoItem.id === Number(action.data.todoItemId));
+
       const targetTodoItem = targetTodoDaily[action.data.category].splice(
         targetTodoItemIndex,
         1
@@ -75,9 +76,9 @@ const reducer = (state, action) => {
         // 오늘의 todoDaily가 없다면 만든다.
         const todayString = new Date().toDateString();
         todayTodoDaily = createTodoDaily(todayString);
+        newState.push(todayTodoDaily);
       }
       todayTodoDaily[action.data.category].push(targetTodoItem);
-      newState.push(todayTodoDaily);
       break;
     }
 

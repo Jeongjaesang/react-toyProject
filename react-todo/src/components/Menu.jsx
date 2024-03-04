@@ -15,6 +15,7 @@ const Menu = forwardRef(function MyInput({ type, id }, ref) {
     handleDeleteTodoItem,
     handleMoveTodoItem,
     handleMovoTodoItemToToday,
+    checkToday,
   } = useContext(Todo_DailyDispatchContext);
 
   const onClickDelete = () => {
@@ -33,11 +34,14 @@ const Menu = forwardRef(function MyInput({ type, id }, ref) {
       {menuList.map((menu) => {
         switch (menu.id) {
           case 1:
-            return (
-              <li key={menu.id} onClick={onClickMoveTodoToToday}>
-                {menu.title}
-              </li>
-            );
+            if (!checkToday()) {
+              return (
+                <li key={menu.id} onClick={onClickMoveTodoToToday}>
+                  {menu.title}
+                </li>
+              );
+            }
+            break;
           case 2:
             return (
               <li key={menu.id} onClick={onClickDelete}>
