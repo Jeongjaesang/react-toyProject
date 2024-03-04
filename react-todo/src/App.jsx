@@ -35,15 +35,19 @@ const reducer = (state, action) => {
       newState = state.filter((todo_daily) => todo_daily.id !== action.id);
       break;
     }
+    // 3월 2일에 todo_daily에 todo추가 추가한 todo를 오늘 하기로 옮김
+    // 3월 2일 todo_daily에 새로운 todo추가 -> 에러
 
     case "UPDATE_TODO_DAILY": {
       console.log("update action occured");
       console.log(state);
-      console.log(action.data);
+      console.log(action.data); // 업데이트 될 todo_daily
       newState = state.map((todo_daily) => {
         if (todo_daily.id === action.data.id) {
           const newTodo_daily = copyTodo_daily(action.data);
           return newTodo_daily;
+        } else {
+          return todo_daily;
         }
       });
       console.log(newState);
