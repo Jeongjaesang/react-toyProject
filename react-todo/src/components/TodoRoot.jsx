@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import Button from "./Button";
 import { TodoStateContext } from "../App";
 import Todo_writable from "./Todo_writable";
@@ -28,6 +28,17 @@ const TodoRoot = () => {
       new Date(curDate.getFullYear(), curDate.getMonth(), curDate.getDate() - 1)
     );
   };
+  // const increaseDate = useCallback(() => {
+  //   setCurDate(
+  //     new Date(curDate.getFullYear(), curDate.getMonth(), curDate.getDate() + 1)
+  //   );
+  // }, [curDate]);
+
+  // const decreaseDate = useCallback(() => {
+  //   setCurDate(
+  //     new Date(curDate.getFullYear(), curDate.getMonth(), curDate.getDate() - 1)
+  //   );
+  // }, [curDate]);
 
   const goToTodayTodoDaily = () => {
     setCurDate(new Date());

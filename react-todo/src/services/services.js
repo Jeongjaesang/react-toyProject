@@ -8,9 +8,9 @@ export const copyCategory = (category) => {
 };
 
 export const copyTodo_daily = (curTodo_daily) => {
+  // console.log(curTodo_daily);
   const newCurTodo_daily = {
     id: curTodo_daily.id,
-    createdAt: curTodo_daily.createdAt,
     not_started: copyCategory(curTodo_daily.not_started),
     in_progress: copyCategory(curTodo_daily.in_progress),
     done: copyCategory(curTodo_daily.done),

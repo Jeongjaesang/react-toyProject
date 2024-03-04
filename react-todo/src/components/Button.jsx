@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import React from "react";
 
 const Button = ({ type, text, onClick }) => {
   const btnType = ["create", "delete"].includes(type) ? type : "default";
@@ -23,4 +24,4 @@ Button.defaultProps = {
   type: "default",
 };
 
-export default Button;
+export default React.memo(Button);

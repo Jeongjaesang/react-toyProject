@@ -38,17 +38,21 @@ const reducer = (state, action) => {
 
     case "UPDATE_TODO_DAILY": {
       console.log("update action occured");
+      console.log(state);
+      console.log(action.data);
       newState = state.map((todo_daily) => {
         if (todo_daily.id === action.data.id) {
           const newTodo_daily = copyTodo_daily(action.data);
           return newTodo_daily;
         }
       });
+      console.log(newState);
       break;
     }
 
     case "MOVE_TODOITEM_TO_TODAY_TODO_DAILY": {
       newState = copyState(state);
+      console.log(newState);
       const targetTodoDaily = newState.find(
         (todo_daily) => todo_daily.id === action.data.todoDaily.id
       ); // todo_daily를 찾음
@@ -83,20 +87,7 @@ const reducer = (state, action) => {
 export const TodoStateContext = React.createContext();
 export const TodoDispatchContext = React.createContext();
 
-const dummyData = [
-  {
-    id: "Wed Feb 28 2024",
-    not_started: [
-      { id: 1, title: "Learn Redux" },
-      { id: 3, title: "Learn Next js" },
-    ],
-    in_progress: [{ id: 2, title: "Learn React" }],
-    done: [],
-  },
-];
-
 function App() {
-  // const [state, dispatch] = useReducer(reducer, dummyData);
   const [state, dispatch] = useReducer(reducer, []);
 
   useEffect(() => {

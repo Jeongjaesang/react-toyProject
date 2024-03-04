@@ -9,7 +9,7 @@ export const Todo_DailyContext = React.createContext();
 export const Todo_DailyDispatchContext = React.createContext();
 
 const Todo_writable = ({ curTodo_daily }) => {
-  console.log(curTodo_daily);
+  // console.log(curTodo_daily);
 
   const [inputValue, setInputValue] = useState("");
 
