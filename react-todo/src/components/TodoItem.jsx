@@ -39,7 +39,7 @@ const TodoItem = ({ type, id, title }) => {
 
 TodoItem.propTypes = {
   type: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
 export default TodoItem;

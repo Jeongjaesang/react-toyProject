@@ -73,7 +73,7 @@ const Menu = forwardRef(function MyInput({ type, id }, ref) {
 
 Menu.propTypes = {
   type: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default Menu;

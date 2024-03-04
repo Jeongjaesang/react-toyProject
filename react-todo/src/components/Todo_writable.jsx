@@ -63,7 +63,7 @@ const Todo_writable = ({ curTodo_daily }) => {
   const handleDeleteTodoItem = (category, todoItemId) => {
     const newTodo_daily = copyTodo_daily(curTodo_daily);
     newTodo_daily[category] = newTodo_daily[category].filter(
-      (todo_item) => todo_item.id !== Number(todoItemId)
+      (todo_item) => todo_item.id !== todoItemId
     );
     onUpdateTodoDaily(newTodo_daily);
   };
