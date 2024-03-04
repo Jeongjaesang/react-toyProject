@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import TodoRoot from "./components/TodoRoot";
 import {
   copyTodo_daily,
@@ -22,6 +22,9 @@ const getToDayTodoDaily = (state) => {
 const reducer = (state, action) => {
   let newState = [];
   switch (action.type) {
+    case "INIT":
+      return action.data;
+
     case "CREATE_TODO_DAILY": {
       const newData = copyTodo_daily(action.data);
       newState = [...state, newData];
@@ -73,6 +76,7 @@ const reducer = (state, action) => {
     default:
       return state;
   }
+  localStorage.setItem("state", JSON.stringify(newState));
   return newState;
 };
 
@@ -92,8 +96,16 @@ const dummyData = [
 ];
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, dummyData);
-  // const [state, dispatch] = useReducer(reducer, []);
+  // const [state, dispatch] = useReducer(reducer, dummyData);
+  const [state, dispatch] = useReducer(reducer, []);
+
+  useEffect(() => {
+    const localData = JSON.parse(localStorage.getItem("state"));
+
+    if (localData) {
+      dispatch({ type: "INIT", data: localData });
+    }
+  }, []);
 
   const onCreateTodoDaily = (data) => {
     dispatch({ type: "CREATE_TODO_DAILY", data: data });
