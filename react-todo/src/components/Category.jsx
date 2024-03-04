@@ -1,6 +1,7 @@
 import Category_header from "./Category_header";
 import PropTypes from "prop-types";
 import TodoItem from "./TodoItem";
+import React from "react";
 
 const Category = ({ type, items }) => {
   return (
@@ -26,5 +27,4 @@ Category.propTypes = {
   type: PropTypes.string.isRequired,
   items: PropTypes.array.isRequired,
 };
-
-export default Category;
+export default React.memo(Category);

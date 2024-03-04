@@ -17,28 +17,17 @@ const TodoRoot = () => {
     curDate.getMonth() + 1
   }월 ${curDate.getDate()}일`;
 
-  const increaseDate = () => {
+  const increaseDate = useCallback(() => {
     setCurDate(
       new Date(curDate.getFullYear(), curDate.getMonth(), curDate.getDate() + 1)
     );
-  };
+  }, [curDate]);
 
-  const decreaseDate = () => {
+  const decreaseDate = useCallback(() => {
     setCurDate(
       new Date(curDate.getFullYear(), curDate.getMonth(), curDate.getDate() - 1)
     );
-  };
-  // const increaseDate = useCallback(() => {
-  //   setCurDate(
-  //     new Date(curDate.getFullYear(), curDate.getMonth(), curDate.getDate() + 1)
-  //   );
-  // }, [curDate]);
-
-  // const decreaseDate = useCallback(() => {
-  //   setCurDate(
-  //     new Date(curDate.getFullYear(), curDate.getMonth(), curDate.getDate() - 1)
-  //   );
-  // }, [curDate]);
+  }, [curDate]);
 
   const goToTodayTodoDaily = () => {
     setCurDate(new Date());

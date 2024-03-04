@@ -1,9 +1,16 @@
 import Button from "./Button";
 import PropTypes from "prop-types";
 import Category from "./Category";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { TodoDispatchContext } from "../App";
 import { copyTodo_daily } from "../services/services";
+import { v4 as uuidv4 } from "uuid";
 
 export const Todo_DailyContext = React.createContext();
 export const Todo_DailyDispatchContext = React.createContext();
@@ -16,9 +23,6 @@ const Todo_writable = ({ curTodo_daily }) => {
   const onChangeInputValue = (e) => {
     setInputValue(e.target.value);
   };
-
-  const todoItemId = useRef(10); // Todo_item의 아이디가 모두 달라야함
-  // 어제의 Todo_item을 오늘의 Todo_Item으로 옮길 수도 있는 것을 고려하면..
 
   const inputRef = useRef(null);
 
@@ -39,7 +43,7 @@ const Todo_writable = ({ curTodo_daily }) => {
     }
   };
 
-  const handleCreateTodoItem = () => {
+  const handleCreateTodoItem = useCallback(() => {
     if (!inputValue) {
       alert("할 일을 입력하셔야 추가됩니다.");
       inputRef.current.focus();
@@ -48,13 +52,12 @@ const Todo_writable = ({ curTodo_daily }) => {
 
     const newTodo_daily = copyTodo_daily(curTodo_daily);
     newTodo_daily.not_started.push({
-      id: todoItemId.current,
+      id: uuidv4(), // 랜덤 아이디 생성 라이브러리
       title: inputValue,
     });
-    todoItemId.current += 1;
     onUpdateTodoDaily(newTodo_daily);
     setInputValue("");
-  };
+  }, [curTodo_daily, onUpdateTodoDaily, inputValue]);
 
   // context api를 사용해야 할 듯!
   const handleDeleteTodoItem = (category, todoItemId) => {
