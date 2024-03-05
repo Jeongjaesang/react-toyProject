@@ -19,8 +19,10 @@ const Empty = ({ curDate }) => {
             src={import.meta.env.VITE_PUBLIC_URL + `assets/empty_emoji.png`}
           />
         </div>
-        <h2>작성한 Todo가 없습니다.</h2>
-        <h3 onClick={handleOnClick}>Todo 작성하러가기</h3>
+        <div className="Empty_text_wrapper">
+          <h2>작성한 Todo가 없습니다.</h2>
+          <h3 onClick={handleOnClick}>Todo 작성하러가기</h3>
+        </div>
       </div>
     </div>
   );

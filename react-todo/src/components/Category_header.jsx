@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 const typeCategoryMatching = {
   not_started: "ToDo",
-  in_progress: "IN PROGRESS",
+  in_progress: "Doing",
   done: "CLOSED",
 };
 

@@ -5,9 +5,9 @@ import PropTypes from "prop-types";
 const menuList = [
   { id: 1, title: "오늘 하기", type: null },
   { id: 2, title: "삭제하기", type: null },
-  { id: 3, title: "Todo로", type: "not_started" },
-  { id: 4, title: "in progress로", type: "in_progress" },
-  { id: 5, title: "closed로", type: "done" },
+  { id: 3, title: "Todo", type: "not_started" },
+  { id: 4, title: "doing", type: "in_progress" },
+  { id: 5, title: "closed", type: "done" },
 ];
 
 const Menu = forwardRef(function MyInput({ type, id }, ref) {

@@ -56,7 +56,7 @@ const TodoRoot = () => {
     <div className="TodoRoot">
       <header className="Header">
         <Button type="default" text="<" onClick={decreaseDate} />
-        {headText}
+        <div>{headText}</div>
         <Button type="default" text=">" onClick={increaseDate} />
       </header>
       <h3 className="todoMessage">{todoMessage}</h3>
