@@ -35,3 +35,15 @@ export const createTodoDaily = (curDate) => {
     done: [],
   };
 };
+
+export const getToDayTodoDaily = (state) => {
+  const todayTodoDailyId = new Date().toDateString();
+
+  let todayTodoDaily = null;
+
+  todayTodoDaily = state.find(
+    (todo_daily) => todo_daily.id === todayTodoDailyId
+  );
+
+  return todayTodoDaily;
+};

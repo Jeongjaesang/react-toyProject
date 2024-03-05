@@ -32,10 +32,10 @@ const Todo_writable = ({ curTodo_daily }) => {
     onMoveToDoItemToTodayTodoDaily,
   } = useContext(TodoDispatchContext);
 
-  const checkToday = () => {
+  const checkToday = useCallback(() => {
     const todayString = new Date().toDateString();
     return curTodo_daily.id == todayString;
-  };
+  }, [curTodo_daily]);
 
   const handleDeleteTodoDaily = () => {
     if (window.confirm("오늘의 Todo 목록을 삭제하시겠습니까?")) {
@@ -99,7 +99,7 @@ const Todo_writable = ({ curTodo_daily }) => {
     return () => {
       document.removeEventListener("keydown", handleKeydown);
     };
-  }, [inputValue]); // 노란줄, 뭐가 문제일까? 일단 보류..
+  }, [inputValue]);
 
   return (
     <div className="view Todo_writable">

@@ -29,9 +29,9 @@ const TodoRoot = () => {
     );
   }, [curDate]);
 
-  const goToTodayTodoDaily = () => {
+  const goToTodayTodoDaily = useCallback(() => {
     setCurDate(new Date());
-  };
+  }, []);
 
   useEffect(() => {
     let cnt = 0;

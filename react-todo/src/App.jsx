@@ -4,20 +4,9 @@ import {
   copyTodo_daily,
   copyState,
   createTodoDaily,
+  getToDayTodoDaily,
 } from "./services/services.js";
 import "./App.css";
-
-const getToDayTodoDaily = (state) => {
-  const todayTodoDailyId = new Date().toDateString();
-
-  let todayTodoDaily = null;
-
-  todayTodoDaily = state.find(
-    (todo_daily) => todo_daily.id === todayTodoDailyId
-  );
-
-  return todayTodoDaily;
-};
 
 const reducer = (state, action) => {
   let newState = [];
@@ -40,8 +29,6 @@ const reducer = (state, action) => {
 
     case "UPDATE_TODO_DAILY": {
       console.log("update action occured");
-      console.log(state);
-      console.log(action.data); // 업데이트 될 todo_daily
       newState = state.map((todo_daily) => {
         if (todo_daily.id === action.data.id) {
           const newTodo_daily = copyTodo_daily(action.data);
@@ -56,7 +43,6 @@ const reducer = (state, action) => {
 
     case "MOVE_TODOITEM_TO_TODAY_TODO_DAILY": {
       newState = copyState(state);
-      console.log(newState);
       const targetTodoDaily = newState.find(
         (todo_daily) => todo_daily.id === action.data.todoDaily.id
       ); // todo_daily를 찾음

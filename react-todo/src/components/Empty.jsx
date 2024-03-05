@@ -1,15 +1,15 @@
 import PropTypes from "prop-types";
-import { useContext } from "react";
+import { useCallback, useContext } from "react";
 import { TodoDispatchContext } from "../App";
 import { createTodoDaily } from "../services/services";
 
 const Empty = ({ curDate }) => {
   const { onCreateTodoDaily } = useContext(TodoDispatchContext);
 
-  const handleOnClick = () => {
+  const handleOnClick = useCallback(() => {
     const newTodo = createTodoDaily(curDate);
     onCreateTodoDaily(newTodo);
-  };
+  }, [curDate, onCreateTodoDaily]);
 
   return (
     <div className="view Empty">
